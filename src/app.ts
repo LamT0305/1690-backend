@@ -1,9 +1,11 @@
-import express from 'express';
+import express from "express";
 import cors from "cors";
+import configs from "./configs";
+
 const app = express();
-import configs from './configs';
-app.get('/', (req, res) => {
-  res.send('Hello, Express with TypeScript!');
+
+app.get("/", (req, res) => {
+  res.send("Hello, Express with TypeScript!");
 });
 
 app.use(express.urlencoded({ extended: true }));
@@ -13,9 +15,6 @@ app.use(express.json());
 app.use(cors());
 
 /* ------------------ routes configure ------------------ */
-configs.router(app)
-
-
-
+configs.router(app);
 
 export default app;
