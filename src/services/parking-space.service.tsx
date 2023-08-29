@@ -3,23 +3,23 @@ import index from "../models/index";
 const parkingSpaceModel = index.parkingSpaceModel;
 
 export const getAllSpace = async () => {
-  const spaces = await parkingSpaceModel.find();
-  return {
-    status: "success",
-    spaces: spaces,
-  };
+    const spaces = await parkingSpaceModel.find();
+    return {
+        status: "success",
+        spaces: spaces,
+    };
 };
 
 export const getAvailableSpaces = async () => {
-  const available = await parkingSpaceModel.find({ status: "available" });
+    const available = await parkingSpaceModel.find({status: "available"});
 
-  if (!available) {
-    throw new Error("No available space");
-  }
-  return {
-    status: "success",
-    available: available,
-  };
+    if (!available) {
+        throw new Error("No available space");
+    }
+    return {
+        status: "success",
+        available: available,
+    };
 };
 
 // export const updateStatus = async (name: String, status: String) => {
@@ -51,28 +51,29 @@ export const getAvailableSpaces = async () => {
 // };
 
 export const updateStatus = async (spaceNumber: String, status: String) => {
-  if (!spaceNumber || !status) {
-    throw new Error("Invalid field information");
-  }
-
-  const updatedSpace = await parkingSpaceModel.findOneAndUpdate(
-    {
-      space_number: spaceNumber.toUpperCase(),
-    },
-    {
-      $set: { status: status },
-    },
-    {
-      new: true,
+    if (!spaceNumber || !status) {
+        throw new Error("Invalid field information");
     }
-  );
 
-  if (!updatedSpace) {
-    throw new Error("No space found");
-  }
+    const updatedSpace = await parkingSpaceModel.findOneAndUpdate(
+        {
+            space_number: spaceNumber.toUpperCase(),
+        },
+        {
+            $set: {status: status},
+        },
+        {
+            new: true,
+        }
+    );
 
-  return {
-    status: "success",
-    updateStatus: updatedSpace,
-  };
+    if (!updatedSpace) {
+        throw new Error("No space found");
+    }
+
+
+    return {
+        status: "success",
+        updateStatus: updatedSpace,
+    };
 };

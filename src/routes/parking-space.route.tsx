@@ -1,13 +1,13 @@
-import { Router } from "express";
+import {Router} from "express";
 
 import {
-  addSpace,
-  findNearestSpace,
-  getAllParkingSpace,
-  getAvailableSpace,
-  updateLine,
-  updateSpaceDetails,
-  updateStatusSpace,
+    addSpace,
+    findNearestSpace,
+    getAllParkingSpace,
+    getAvailableSpace,
+    updateLine,
+    updateSpaceDetails,
+    updateStatusSpace,
 } from "../controllers/parkingspace.controller";
 
 const router: Router = Router();
