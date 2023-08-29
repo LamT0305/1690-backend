@@ -18,6 +18,11 @@ const io = require('socket.io')(http, {
     }
 });
 
+  //handle real-time events
+  Socket.on("updateData", (data: any) => {
+    console.log("received data from client:", data);
+    io.emit("dataUpdated", data);
+  });
 
 io.on("connection", (socket: Socket) => {
     socket.on("join", (id: string) => {
