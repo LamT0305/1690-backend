@@ -8,9 +8,10 @@ const app = express();
 
 app.get('/', (req, res) => {
     res.send('Hello, Express with TypeScript!');
+});
 
 app.get("/", (req, res) => {
-  res.send("Hello, Express with TypeScript!");
+    res.send("Hello, Express with TypeScript!");
 });
 
 app.use(express.urlencoded({extended: true}));
@@ -20,7 +21,6 @@ app.use(express.json());
 app.use(cors());
 
 /* ------------------ routes configure ------------------ */
-configs.router(app)
-
+configs.router(app);
 
 export default app;

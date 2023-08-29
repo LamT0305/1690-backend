@@ -1,5 +1,5 @@
-import app from './app';
-import config from "./configs/index"
+import app from "./app";
+import config from "./configs/index";
 import {Socket} from "socket.io";
 import eventEmitters from "./configs/eventEmitters";
 
@@ -9,20 +9,17 @@ const PORT = process.env.PORT || 3000;
 config.dbconect();
 // /* ------------------------------------------------------ */
 
-const http = require('http').createServer(app);
+const http = require("http").createServer(app);
 
-const io = require('socket.io')(http, {
+const io = require("socket.io")(http, {
     cors: {
-        origin: '*',
-        methods: ['GET', 'POST', 'DELETE']
-    }
+        origin: "*",
+        methods: ["GET", "POST", "DELETE"],
+    },
 });
 
-  //handle real-time events
-  Socket.on("updateData", (data: any) => {
-    console.log("received data from client:", data);
-    io.emit("dataUpdated", data);
-  });
+//handle real-time events
+// @ts-ignore
 
 io.on("connection", (socket: Socket) => {
     socket.on("join", (id: string) => {
@@ -44,4 +41,3 @@ eventEmitters.on("updateLotStatus", (data: any) => {
 http.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
-
