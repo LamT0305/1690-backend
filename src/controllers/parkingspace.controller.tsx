@@ -30,6 +30,9 @@ export const updateStatusSpace = async (req: Request, res: Response) => {
         const space_name = req.params.name as string;
         const {status} = req.body;
 
+        console.log("space_name: ", space_name);
+        console.log("status: ", status);
+
         const updateResult = await updateStatus(space_name, status); // Log the result
         eventEmitters.emit("updateLotStatus", updateResult);
 
